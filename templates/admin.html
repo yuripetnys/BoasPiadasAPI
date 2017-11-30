@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+{% with messages = get_flashed_messages() %}
+    {% for message in messages %}
+      <div style="background-color: yellow;">{{ message }}</div>
+    {% endfor %}
+{% endwith %}
+
+<form action="/add" method="post">
+Piada: <input type="text" name="joke">
+<br>
+<input type="submit" value="Enviar">
+</form>
+
+
+<table><tr><th>ID</th><th>Piada</th><th>Comandos</th></tr>
+{% for item in jokes -%}
+<tr><td>{{item.doc_id}}</td><td>{{item["joke"]}}</td><td><a href="/delete/{{item.doc_id}}">Delete</a></td></tr>
+{%- endfor %}
+</table>
+</body>
+</html>
